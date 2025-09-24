@@ -38,9 +38,7 @@ gstLaunchCmd="GST_DEBUG="GST_TRACER:7" GST_TRACERS='latency_tracer(flags=pipelin
     ! gvametaconvert \
     ! tee name=t \
         t. ! queue ! $OUTPUT \
-        t. ! queue ! gvametapublish name=destination file-format=json-lines file-path=/tmp/results/r\$cid.jsonl ! fakesink sync=false async=false \
-    2>&1 | tee /tmp/results/gst-launch_\$cid.log \
-    | (stdbuf -oL sed -n -e 's/^.*current: //p' | stdbuf -oL cut -d , -f 1 > /tmp/results/pipeline\$cid.log)"
+        t. ! queue ! gvametapublish name=destination file-format=json-lines file-path=/tmp/results/r\$cid.jsonl ! fakesink sync=false async=false"
 
 echo "$gstLaunchCmd"
 
